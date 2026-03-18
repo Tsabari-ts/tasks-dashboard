@@ -17,25 +17,31 @@
         <th>פעולות</th>
       </tr>
     </thead>
-    <tbody>
-        <tr *ngFor="let task of tasks$ | async";>
-            <td class="wrap-text">{{ task.title }}</td>
-            <td class="wrap-text">{{ task.taskDescription }}</td>
-            <td>{{ getPriorityName(task.priorityId) }}</td>
-            <td>{{ task.dueDate | date: 'dd/MM/yyyy' }}</td>
-            <td>{{ getStatusName(task.statusId) }}</td>
-            <td>
-                <div class="btn-group flex-wrap">
-                    <button class="btn btn-sm btn-outline-primary" (click)="onEditTask(task)">
-                    <i class="bi bi-pencil"></i>
-                    </button>
-                    <button class="btn btn-sm btn-outline-danger mr-r" (click)="onDeleteTask(task.id)">
-                    <i class="bi bi-trash"></i>
-                    </button>
-                </div>
-            </td>
+      <tbody *ngIf="(tasks$ | async) as tasks">
+        <tr *ngIf="tasks.length === 0">
+          <td colspan="6" class="text-center text-muted">
+            אין משימות להצגה. לחץ על "הוסף משימה" כדי להתחיל 😊
+          </td>
         </tr>
-    </tbody>
+
+        <tr *ngFor="let task of tasks">
+          <td class="wrap-text">{{ task.title }}</td>
+          <td class="wrap-text">{{ task.taskDescription }}</td>
+          <td>{{ getPriorityName(task.priorityId) }}</td>
+          <td>{{ task.dueDate | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ getStatusName(task.statusId) }}</td>
+          <td>
+            <div class="btn-group flex-wrap">
+              <button class="btn btn-sm btn-outline-primary" (click)="onEditTask(task)">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn btn-sm btn-outline-danger mr-r" (click)="onDeleteTask(task.id)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
   </table>
 
   <div class="scroll-hint"></div>
