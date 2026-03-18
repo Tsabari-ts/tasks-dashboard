@@ -42,7 +42,6 @@ ngOnInit(): void {
         if (result) {
           return this.taskManagement.createTask(result).pipe(
             tap((res: OperationResult) => {
-              debugger
               if (res.success && res.taskItemData) {
                 this.tasksSubject.next([...this.tasksSubject.value, res.taskItemData]);
               } else {
