@@ -1,0 +1,79 @@
+.table th, .table td {
+  text-align: center;
+  vertical-align: middle;
+    word-break: break-word;
+  white-space: normal;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.table-dark {
+  background-color: #343a40;
+  color: #fff;
+}
+
+.custom-dialog-container .mat-mdc-dialog-surface {
+  border-radius: 12px;
+  padding: 0;
+}
+
+.wrap-text {
+  max-width: 200px;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.table-container {
+  margin: 2rem auto;
+  max-width: 80%;
+  overflow-x: auto; 
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+.table {
+  min-width: 600px; 
+}
+
+.mr-r{
+    margin-right: 1rem;
+}
+
+.header{
+    margin-top: 3rem;
+    margin-right: 2rem;
+}
+
+@media (max-width: 768px) {
+  .table th, .table td {
+    font-size: 0.9rem;
+    padding: 0.4rem;
+  }
+}
+
+.scroll-hint {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  right: 30px;
+  width: 50px;
+  height: 10px;
+  background: linear-gradient(90deg, #ccc 0%, #d8b7b7 50%, #ccc 100%);
+  border-radius: 2px;
+  animation: slideHint 1s infinite alternate;
+}
+
+@keyframes slideHint {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50px); }
+}
+
+@media (max-width: 768px) {
+  .scroll-hint {
+    position: relative;
+    display: block;
+  }
+}

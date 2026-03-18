@@ -1,0 +1,56 @@
+<div class="dialog-padding">
+  <div class="modal-header">
+    <h5 class="modal-title">
+        {{ task ? 'עריכת משימה' : 'הוספת משימה' }}
+    </h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="cancel()"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="form">
+        <div class="mb-3">
+            <label class="form-label">כותרת</label>
+            <input type="text" formControlName="title" class="form-control"/>
+            <div *ngIf="form.controls['title'].invalid && form.controls['title'].touched" class="text-danger">
+            שדה חובה
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">תיאור</label>
+            <textarea formControlName="taskDescription" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">עדיפות</label>
+            <select formControlName="priorityId" class="form-select">
+            <option *ngFor="let p of priorities" [value]="p.id">{{ p.name }}</option>
+            </select>
+            <div *ngIf="form.controls['dueDate'].invalid && form.controls['dueDate'].touched" class="text-danger">
+              שדה חובה
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">תאריך יעד</label>
+            <input type="date" formControlName="dueDate" class="form-control"/>
+            <div *ngIf="form.controls['dueDate'].invalid && form.controls['dueDate'].touched" class="text-danger">
+            שדה חובה
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">סטטוס</label>
+            <select formControlName="statusId" class="form-select">
+              <option *ngFor="let s of statuses" [value]="s.id">{{ s.name }}</option>
+            </select>
+            <div *ngIf="form.controls['dueDate'].invalid && form.controls['dueDate'].touched" class="text-danger">
+              שדה חובה
+            </div>
+        </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="cancel()">ביטול</button>
+    <button type="button" class="btn btn-primary" (click)="save()">שמור</button>
+  </div>      
+</div>

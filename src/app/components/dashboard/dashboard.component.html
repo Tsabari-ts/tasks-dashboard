@@ -1,0 +1,42 @@
+<h1 class="mb-3 text-center header">
+  <i class="bi bi-list-check"></i> דשבורד משימות
+    <button class="btn btn-sm btn-success ms-3" (click)="onAddTask()">
+    <i class="bi bi-plus-lg me-1"></i> הוסף משימה
+  </button>
+</h1>
+
+<div class="table-container" dir="rtl">
+  <table class="table table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>כותרת משימה</th>
+        <th>תיאור משימה</th>
+        <th>עדיפות</th>
+        <th>תאריך יעד</th>
+        <th>סטטוס</th>
+        <th>פעולות</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let task of tasks$ | async";>
+            <td class="wrap-text">{{ task.title }}</td>
+            <td class="wrap-text">{{ task.taskDescription }}</td>
+            <td>{{ getPriorityName(task.priorityId) }}</td>
+            <td>{{ task.dueDate | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ getStatusName(task.statusId) }}</td>
+            <td>
+                <div class="btn-group flex-wrap">
+                    <button class="btn btn-sm btn-outline-primary" (click)="onEditTask(task)">
+                    <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger mr-r" (click)="onDeleteTask(task.id)">
+                    <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <div class="scroll-hint"></div>
+</div>
